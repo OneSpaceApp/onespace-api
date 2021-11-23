@@ -1,7 +1,6 @@
 from flask import Blueprint, request, jsonify
 import json
 from services.createUser import createUser
-from lib.text_encrypter import str_to_base64, base64_to_str
 from lib.database import mongodb
 from jwt import encode, decode
 from lib.hasher import verify_password
