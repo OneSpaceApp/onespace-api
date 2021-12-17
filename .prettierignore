@@ -1,0 +1,10 @@
+*.svg
+*.lock
+*.txt
+*.log
+*.md
+*.conf
+*.png
+*.map
+*.gitignore
+*.ico

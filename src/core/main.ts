@@ -1,25 +1,36 @@
 import express from 'express'
 import { Server } from 'http'
-import { Config } from './config'
+import Database from '../database'
+import { infoMessage, warningMessage } from '../lib'
+import Config from './config'
 
-export class ServerApp {
-  private app: express.Application
-  private server: Server
-  private dev?: boolean
+export default class ServerApp {
+    private app: express.Application
 
-  constructor(dev?: boolean) {
-    this.app = express()
-    this.server = new Server(this.app)
-    this.dev = dev
-  }
+    private server: Server
 
-  public start() {
-    new Config(this.app, this.dev).apply()
+    private dev?: boolean
 
-    this.server.listen(3000, () => {
-      console.log('Server is running on port 3000')
-    })
-    
-    // new SocketConn.init(this.server)
-  }
+    constructor(dev?: boolean) {
+        this.app = express()
+        this.server = new Server(this.app)
+        this.dev = dev
+    }
+
+    public start() {
+        const config = new Config(this.app, this.dev)
+        config.apply()
+
+        new Database(this.dev).init()
+
+        if (this.dev) {
+            warningMessage('Server is running in development mode')
+        }
+
+        this.server.listen(config.port, () => {
+            infoMessage(`Server is running on port ${config.port}`)
+        })
+
+        // new SocketConn.init(this.server)
+    }
 }
