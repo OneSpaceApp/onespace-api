@@ -13,8 +13,8 @@ export const PostSchema = new mongoose.Schema<PostType>({
     censoredText: { type: String, default: '' },
     created: { type: Date, default: Date.now },
     edited: { type: Boolean, default: false },
-    images: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Image' }],
-    videos: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Video' }],
+    images: [{ type: String }],
+    videos: [{ type: String }],
     mentions: [{ type: String }],
     sensitive: { type: Boolean, default: false },
     style: {
