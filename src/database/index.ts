@@ -1,21 +1,15 @@
 import mongoose from 'mongoose'
-import { schemas } from './schemas'
+import { errorMessage, infoMessage, warningMessage } from '../lib/coloredMessages'
 import { models } from './models'
-import { Schemas, Models } from './types'
-import { errorMessage, infoMessage, warningMessage } from '../lib'
 
 export default class Database {
-    public schemas: Schemas
-    public models: Models
-
     private devUri: string
     private dev?: boolean
+    public models = models
 
     constructor(dev?: boolean) {
         this.devUri = 'mongodb://localhost/spaces-io'
 
-        this.schemas = schemas
-        this.models = models
         this.dev = dev
     }
 

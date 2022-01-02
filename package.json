@@ -1,5 +1,5 @@
 {
-    "name": "spaces.io-server",
+    "name": "onespace-server",
     "version": "1.0.0",
     "main": "src/index.ts",
     "repository": "https://gitlab.com/spacesio/spaces-io-api",
@@ -13,7 +13,9 @@
         "test": "jest",
         "test:watch": "jest --watchAll",
         "lint:format": "npm run lint && npm run format",
-        "start:dev": "nodemon src/index.ts --exec \"cls && eslint src/**/*.ts --fix && ts-node src/index.ts\""
+        "start:dev:lint": "nodemon src/index.ts --exec \"cls && eslint src/**/*.ts --fix && ts-node src/index.ts\"",
+        "dev": "nodemon src/index.ts --exec \"cls && ts-node src/index.ts\"",
+        "start:dev": "ts-node src/index.ts"
     },
     "devDependencies": {
         "@types/express": "^4.17.13",
@@ -37,8 +39,10 @@
         "typescript": "^4.5.4"
     },
     "dependencies": {
+        "@types/bcrypt": "^5.0.0",
         "@types/cors": "^2.8.12",
         "@types/dotenv": "^8.2.0",
+        "@types/nodemailer": "^6.4.4",
         "bcrypt": "^5.0.1",
         "cors": "^2.8.5",
         "cryptr": "^6.0.2",
@@ -48,6 +52,7 @@
         "jsonwebtoken": "^8.5.1",
         "mongoose": "^6.1.2",
         "morgan": "^1.10.0",
+        "nodemailer": "^6.7.2",
         "prettier": "^2.5.1",
         "socket.io": "^4.4.0"
     }

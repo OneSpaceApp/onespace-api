@@ -1,7 +1,7 @@
 import express from 'express'
 import { Server } from 'http'
 import Database from '../database'
-import { infoMessage, warningMessage } from '../lib'
+import { infoMessage, warningMessage } from '../lib/coloredMessages'
 import Config from './config'
 
 export default class ServerApp {
