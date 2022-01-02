@@ -20,7 +20,7 @@ export default class Database {
     async init() {
         try {
             await mongoose.connect(
-                this.dev ? this.devUri : process.env.MONGO_URL || this.devUri
+                this.dev ? this.devUri : process.env.DATABASE || this.devUri
             )
 
             if (this.dev) {
