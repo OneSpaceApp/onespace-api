@@ -42,8 +42,7 @@ export const docs: Endpoints = {
             title: 'Login',
             path: '/login',
             method: methods.POST,
-            description:
-                'Login a user, and return a JWT with the user data',
+            description: 'Login a user, and return a JWT with the user data',
             body: {
                 email: 'string',
                 password: 'string',

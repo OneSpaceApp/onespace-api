@@ -25,11 +25,16 @@ export class AuthService {
 
         const newUser = { ...signUpData, code }
 
-        return await jsonwebtoken.sign(JSON.stringify(newUser), process.env.SECRET as string)
+        return await jsonwebtoken.sign(
+            JSON.stringify(newUser),
+            process.env.SECRET as string
+        )
     }
 
     public async Confirm(token: string, code: string): Promise<string> {
-        const decoded = jsonwebtoken.decode(token)  as SignUpDTO & { code: string }
+        const decoded = jsonwebtoken.decode(token) as SignUpDTO & {
+            code: string
+        }
 
         if (decoded.code !== code) throw new Error('Invalid code')
 
@@ -48,7 +53,10 @@ export class AuthService {
         const newUser = new db(userData)
         await newUser.save()
 
-        return jsonwebtoken.sign(JSON.stringify(newUser), process.env.SECRET as string)
+        return jsonwebtoken.sign(
+            JSON.stringify(newUser),
+            process.env.SECRET as string
+        )
     }
 
     public async Login(email: string, password: string): Promise<string> {
@@ -59,6 +67,9 @@ export class AuthService {
 
         if (!areEqual) throw new Error('Invalid password')
 
-        return jsonwebtoken.sign(JSON.stringify(user), process.env.SECRET as string)
+        return jsonwebtoken.sign(
+            JSON.stringify(user),
+            process.env.SECRET as string
+        )
     }
 }

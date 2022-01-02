@@ -49,7 +49,8 @@ export class FeedService {
     }
 
     public async UpdatePost(postId: string, post: PostDTO, token: string) {
-        const decoded = (await jsonwebtoken.decode(token)) as UserType & Document
+        const decoded = (await jsonwebtoken.decode(token)) as UserType &
+            Document
         const postToUpdate = (await db.findById(postId)) as PostType & Document
 
         if (postToUpdate.author.toString() !== decoded._id.toString()) {
@@ -107,8 +108,10 @@ export class FeedService {
     }
 
     public async DeleteComment(commentId: string, token: string) {
-        const decoded = (await jsonwebtoken.decode(token)) as UserType & Document
-        const comment = (await comments.findById(commentId)) as CommentType & Document
+        const decoded = (await jsonwebtoken.decode(token)) as UserType &
+            Document
+        const comment = (await comments.findById(commentId)) as CommentType &
+            Document
 
         if (comment.author.toString() !== decoded._id.toString()) {
             throw new Error('You are not the author of this comment')
@@ -118,7 +121,8 @@ export class FeedService {
     }
 
     public async DeletePost(postId: string, token: string) {
-        const decoded = (await jsonwebtoken.decode(token)) as UserType & Document
+        const decoded = (await jsonwebtoken.decode(token)) as UserType &
+            Document
         const post = (await db.findById(postId)) as PostType & Document
 
         if (post.author.toString() !== decoded._id.toString()) {
@@ -128,14 +132,20 @@ export class FeedService {
         return await db.findByIdAndDelete(postId)
     }
 
-    public async UpdateComment(commentId: string, newComment: CommentDTO, token: string) {
-        const decoded = (await jsonwebtoken.decode(token)) as UserType & Document
-        const comment = (await comments.findById(commentId)) as CommentType & Document
+    public async UpdateComment(
+        commentId: string,
+        newComment: CommentDTO,
+        token: string
+    ) {
+        const decoded = (await jsonwebtoken.decode(token)) as UserType &
+            Document
+        const comment = (await comments.findById(commentId)) as CommentType &
+            Document
 
         if (comment.author.toString() !== decoded._id.toString()) {
             throw new Error('You are not the author of this comment')
         }
-        
+
         return await comments.findByIdAndUpdate(commentId, newComment)
     }
 
@@ -173,23 +183,31 @@ export class FeedService {
         return await reactions.findByIdAndDelete(reactionId)
     }
 
-    public async AddCommentReaction(commentId: string, reaction: Reaction, token: string) {
+    public async AddCommentReaction(
+        commentId: string,
+        reaction: Reaction,
+        token: string
+    ) {
         const decoded = (await jsonwebtoken.decode(token)) as UserType &
             Document
-        const comment = (await comments.findById(commentId)) as CommentType & Document
+        const comment = (await comments.findById(commentId)) as CommentType &
+            Document
 
         const newReaction = new reactions({ user: decoded._id, type: reaction })
 
         const reactionCreated = await newReaction.save()
         const commentReactions = comment.reactions
         commentReactions.push(reactionCreated)
-        await comments.findByIdAndUpdate(commentId, { reactions: commentReactions })
+        await comments.findByIdAndUpdate(commentId, {
+            reactions: commentReactions,
+        })
 
         return reactionCreated
     }
 
     public async DeleteCommentReaction(commentId: string, reactionId: string) {
-        const comment = (await comments.findById(commentId)) as CommentType & Document
+        const comment = (await comments.findById(commentId)) as CommentType &
+            Document
         const commentReactions = comment.reactions as unknown as Document[]
 
         const reaction = commentReactions.find(
@@ -198,9 +216,10 @@ export class FeedService {
 
         commentReactions.splice(commentReactions.indexOf(reaction), 1)
 
-        await comments.findByIdAndUpdate(commentId, { reactions: commentReactions })
+        await comments.findByIdAndUpdate(commentId, {
+            reactions: commentReactions,
+        })
 
         return await reactions.findByIdAndDelete(reactionId)
     }
-
 }

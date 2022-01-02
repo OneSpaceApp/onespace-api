@@ -1,4 +1,4 @@
-import { NotificationType } from './notification.type';
+import { NotificationType } from './notification.type'
 import { PostType, SharedPostType } from './post.type'
 
 enum Relationship {

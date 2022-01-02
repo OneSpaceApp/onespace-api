@@ -19,7 +19,11 @@ export function Router(prefix: string) {
                 this.conf[method](
                     prefix + path,
                     ...middlewares,
-                    (req: Request | TokenizedRequest, res: Response, next?: NextFunction) => {
+                    (
+                        req: Request | TokenizedRequest,
+                        res: Response,
+                        next?: NextFunction
+                    ) => {
                         originalMethod.apply(target, [
                             req,
                             res,

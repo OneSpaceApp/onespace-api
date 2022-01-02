@@ -1,4 +1,4 @@
-interface ChatRoomUser { 
+interface ChatRoomUser {
     user: string
     admin: boolean
     muted: boolean

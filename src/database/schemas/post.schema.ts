@@ -20,11 +20,11 @@ export const PostSchema = new mongoose.Schema<PostType>({
     style: {
         backgroundColor: { type: String, default: '#ffffff' },
         font: { type: String, default: 'default' },
-        textColor: { type: String, default: '#ffffff' }
+        textColor: { type: String, default: '#ffffff' },
     },
     tags: [{ type: String }],
     link: { type: String, default: '' },
-    
+
     // Default
     reports: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Report' }],
     reactions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Reaction' }],

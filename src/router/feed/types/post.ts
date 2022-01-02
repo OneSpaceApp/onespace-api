@@ -4,7 +4,7 @@ export enum privacy {
 }
 
 export interface PostDTO {
-    privacy: privacy;
+    privacy: privacy
     allowComments: boolean
     allowReactions: boolean
     allowSharing: boolean

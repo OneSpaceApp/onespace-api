@@ -65,5 +65,4 @@ export default class AuthRouter
             res.status(500).json({ error: err.message, status: 500 })
         }
     }
-
 }

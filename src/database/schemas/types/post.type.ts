@@ -1,15 +1,15 @@
-import { CommentType } from "./comment.type";
-import { ReactionType } from "./reaction.type";
-import { ReportType } from "./report.type";
+import { CommentType } from './comment.type'
+import { ReactionType } from './reaction.type'
+import { ReportType } from './report.type'
 
 enum Privacy {
     Public = 'public',
-    Private = 'private'
+    Private = 'private',
 }
 
 export interface SharedPostType {
     author: string
-    privacy: Privacy,
+    privacy: Privacy
     content: string
     censored: boolean
     censoredText: string

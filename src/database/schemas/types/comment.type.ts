@@ -1,5 +1,5 @@
-import { ReactionType } from "./reaction.type";
-import { ReportType } from "./report.type";
+import { ReactionType } from './reaction.type'
+import { ReportType } from './report.type'
 
 export interface SubCommentType {
     content: string

@@ -6,11 +6,7 @@ export type TokenizedRequest = express.Request & {
 }
 
 export function Jwt() {
-    return (
-        req: any,
-        res: express.Response,
-        next: express.NextFunction
-    ) => {
+    return (req: any, res: express.Response, next: express.NextFunction) => {
         let token = req.header('Authorization')
         token = token?.split(' ')[1]
 

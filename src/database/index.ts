@@ -1,5 +1,9 @@
 import mongoose from 'mongoose'
-import { errorMessage, infoMessage, warningMessage } from '../lib/coloredMessages'
+import {
+    errorMessage,
+    infoMessage,
+    warningMessage,
+} from '../lib/coloredMessages'
 import { models } from './models'
 
 export default class Database {

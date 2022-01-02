@@ -8,10 +8,8 @@ export const docs: Endpoints = {
             title: 'Create post',
             path: '/create-post',
             method: methods.POST,
-            description:
-                'Create a new post, and return the post data',
-            body: {
-            },
+            description: 'Create a new post, and return the post data',
+            body: {},
             response: {
                 post: 'The post data',
             },
