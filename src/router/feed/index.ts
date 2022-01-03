@@ -31,9 +31,14 @@ export default class FeedRouter
     @router.route('/create-post', 'post')
     @validate(createPostValidator)
     async createPost(req: TokenizedRequest, res: Response) {
-        const { token, body } = req
-        const post = await this.CreatePost(body, token as string)
-        res.json({ post })
+        try {
+            const { token, body } = req
+            const post = await this.CreatePost(body, token as string)
+            res.json({ post })
+        } catch (error) {
+            errorMessage((error as Error).message)
+            res.status(500).json({ error })
+        }
     }
 
     @router.route('/get-posts', 'get')

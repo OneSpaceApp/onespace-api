@@ -17,12 +17,16 @@ export class FeedService {
     public async CreatePost(post: PostDTO, token: string) {
         const decoded = (await jsonwebtoken.decode(token)) as UserType &
             Document
+        const user = (await users.findById(decoded._id)) as UserType & Document
+
+        if (!user) {
+            throw new Error('User not found')
+        }
+
         const newPost = new db(post)
         newPost.author = decoded._id
 
         const postCreated = await newPost.save()
-
-        const user = (await users.findById(decoded._id)) as UserType & Document
         const userPosts = user.posts
 
         userPosts.push(postCreated)
